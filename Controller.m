@@ -27,9 +27,14 @@
 	for (id item in loginItemsArray) {		
 		LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)item;
 		if (LSSharedFileListItemResolve(itemRef, 0, (CFURLRef*) &thePath, NULL) == noErr) {
-			if ([[(NSURL *)thePath path] hasPrefix:SGApplicationPath])
+			if ([[(NSURL *)thePath path] hasPrefix:SGApplicationPath]) {
 				LSSharedFileListItemRemove(theLoginItemsRefs, itemRef); // Deleting the item
-		}
+			}
+			
+			// Docs for LSSharedFileListItemResolve say we're responsible
+			// for releasing the CFURLRef that is returned
+			CFRelease(thePath);
+		}		
 	}
 	
 	[loginItemsArray release];
