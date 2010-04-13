@@ -10,13 +10,14 @@
 
 
 @interface Controller : NSObject {
-	IBOutlet NSButton *oOpenAtLogin;
+	IBOutlet NSButton *btnToggleLoginItem;
 }
 
-- (IBAction)addLoginItem:(id)sender;
+- (IBAction)toggleLoginItem:(id)sender;
 @end
 
 @interface Controller (PrivateMethods)
-- (void)enableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(CFURLRef)thePath;
-- (void)disableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(CFURLRef)thePath;
+- (void)enableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(NSString *)appPath;
+- (void)disableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(NSString *)appPath;
+- (BOOL)loginItemExistsWithLoginItemReference:(LSSharedFileListRef)theLoginItemsRefs ForPath:(NSString *)appPath;
 @end
