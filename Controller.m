@@ -22,8 +22,8 @@
 	CFURLRef thePath;
 	// We're going to grab the contents of the shared file list (LSSharedFileListItemRef objects)
 	// and pop it in an array so we can iterate through it to find our item.
-	NSArray  *loginItemsArray = (NSArray *)LSSharedFileListCopySnapshot(theLoginItemsRefs, &seedValue);
-	for (id item in loginItemsArray) {		
+	CFArrayRef loginItemsArray = LSSharedFileListCopySnapshot(theLoginItemsRefs, &seedValue);
+	for (id item in (NSArray *)loginItemsArray) {		
 		LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)item;
 		if (LSSharedFileListItemResolve(itemRef, 0, (CFURLRef*) &thePath, NULL) == noErr) {
 			if ([[(NSURL *)thePath path] hasPrefix:appPath]) {
@@ -34,8 +34,7 @@
 			CFRelease(thePath);
 		}		
 	}
-	
-	[loginItemsArray release];
+	CFRelease(loginItemsArray);
 }
 
 - (BOOL)loginItemExistsWithLoginItemReference:(LSSharedFileListRef)theLoginItemsRefs ForPath:(NSString *)appPath {
@@ -45,8 +44,8 @@
 	
 	// We're going to grab the contents of the shared file list (LSSharedFileListItemRef objects)
 	// and pop it in an array so we can iterate through it to find our item.
-	NSArray  *loginItemsArray = (NSArray *)LSSharedFileListCopySnapshot(theLoginItemsRefs, &seedValue);  
-	for (id item in loginItemsArray) {    
+	CFArrayRef loginItemsArray = LSSharedFileListCopySnapshot(theLoginItemsRefs, &seedValue);
+	for (id item in (NSArray *)loginItemsArray) {    
 		LSSharedFileListItemRef itemRef = (LSSharedFileListItemRef)item;
 		if (LSSharedFileListItemResolve(itemRef, 0, (CFURLRef*) &thePath, NULL) == noErr) {
 			if ([[(NSURL *)thePath path] hasPrefix:appPath]) {
@@ -58,8 +57,7 @@
 		// for releasing the CFURLRef that is returned
 		CFRelease(thePath);
 	}
-
-	[loginItemsArray release];
+	CFRelease(loginItemsArray);
 	
 	return found;
 }
