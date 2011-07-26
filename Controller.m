@@ -52,10 +52,10 @@
 				found = YES;
 				break;
 			}
+            // Docs for LSSharedFileListItemResolve say we're responsible
+            // for releasing the CFURLRef that is returned
+            CFRelease(thePath);
 		}
-		// Docs for LSSharedFileListItemResolve say we're responsible
-		// for releasing the CFURLRef that is returned
-		CFRelease(thePath);
 	}
 	CFRelease(loginItemsArray);
 	
