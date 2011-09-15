@@ -38,7 +38,7 @@
 
 - (void)disableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(NSString *)appPath {
 	UInt32 seedValue;
-	CFURLRef thePath;
+	CFURLRef thePath = NULL;
 	// We're going to grab the contents of the shared file list (LSSharedFileListItemRef objects)
 	// and pop it in an array so we can iterate through it to find our item.
 	CFArrayRef loginItemsArray = LSSharedFileListCopySnapshot(theLoginItemsRefs, &seedValue);
@@ -50,16 +50,16 @@
 			}
 			// Docs for LSSharedFileListItemResolve say we're responsible
 			// for releasing the CFURLRef that is returned
-			CFRelease(thePath);
+			if (thePath != NULL) CFRelease(thePath);
 		}		
 	}
-	CFRelease(loginItemsArray);
+	if (loginItemsArray != NULL) CFRelease(loginItemsArray);
 }
 
 - (BOOL)loginItemExistsWithLoginItemReference:(LSSharedFileListRef)theLoginItemsRefs ForPath:(NSString *)appPath {
 	BOOL found = NO;  
 	UInt32 seedValue;
-	CFURLRef thePath;
+	CFURLRef thePath = NULL;
 	
 	// We're going to grab the contents of the shared file list (LSSharedFileListItemRef objects)
 	// and pop it in an array so we can iterate through it to find our item.
@@ -71,12 +71,12 @@
 				found = YES;
 				break;
 			}
+            // Docs for LSSharedFileListItemResolve say we're responsible
+            // for releasing the CFURLRef that is returned
+            if (thePath != NULL) CFRelease(thePath);
 		}
-		// Docs for LSSharedFileListItemResolve say we're responsible
-		// for releasing the CFURLRef that is returned
-		CFRelease(thePath);
 	}
-	CFRelease(loginItemsArray);
+	if (loginItemsArray != NULL) CFRelease(loginItemsArray);
 	
 	return found;
 }
