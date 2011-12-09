@@ -1,5 +1,6 @@
 Easily add 'Open at Login' functionality to your Mac OS X app!
 
+Step-by-Step Guide:
 1. Add OpenAtLogin.h and OpenAtLogin.m to your Xcode project.
 2. In Xcode, go to your .xib file.
 3. View > Utilities > Object Library. Drag an 'Object' (NSObject) over to your Objects list.
@@ -10,8 +11,10 @@ Easily add 'Open at Login' functionality to your Mac OS X app!
 8. That's all there is to it! Check the checkbox, log out, log back in, and watch your app open automatically.
 
 Tutorial Author: Peter Kamb
+Website: https://github.com/pkamb/OpenAtLogin
 
 Forked from SGLaunchAtLogin
 Author: Justin Williams
 Contact: justin[at]secondgearsoftware[dot]com
 Website: http://www.secondgearsoftware.com/
+GitHub: https://github.com/carpeaqua/Shared-File-List-Example
