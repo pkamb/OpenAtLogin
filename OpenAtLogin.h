@@ -27,14 +27,14 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface Controller : NSObject {
+@interface OpenAtLogin : NSObject {
 	IBOutlet NSButton *btnToggleLoginItem;
 }
 
 - (IBAction)toggleLoginItem:(id)sender;
 @end
 
-@interface Controller (PrivateMethods)
+@interface OpenAtLogin (PrivateMethods)
 - (void)enableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(NSString *)appPath;
 - (void)disableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(NSString *)appPath;
 - (BOOL)loginItemExistsWithLoginItemReference:(LSSharedFileListRef)theLoginItemsRefs ForPath:(NSString *)appPath;

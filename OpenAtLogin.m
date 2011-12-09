@@ -25,9 +25,9 @@
  */
 
 
-#import "Controller.h"
+#import "OpenAtLogin.h"
 
-@implementation Controller (PrivateMethods)
+@implementation OpenAtLogin (PrivateMethods)
 - (void)enableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(NSString *)appPath {
 	// We call LSSharedFileListInsertItemURL to insert the item at the bottom of Login Items list.
 	CFURLRef url = (CFURLRef)[NSURL fileURLWithPath:appPath];
@@ -82,7 +82,7 @@
 }
 @end
 
-@implementation Controller
+@implementation OpenAtLogin
 - (void)awakeFromNib {
 	// This will retrieve the path for the application
 	// For example, /Applications/test.app
