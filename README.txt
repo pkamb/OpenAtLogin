@@ -10,6 +10,9 @@ Step-by-Step Guide:
 7. Drag the checkbox's 'New Referencing Outlet' connection to your OpenAtLogin Object. Select 'btnToggleLoginItem'.
 8. That's all there is to it! Check the checkbox, log out, log back in, and watch your app open automatically.
 
+NOTE: This method won't work for adding open-at-login functionality to a sandboxed app. Try this instead:
+http://blog.timschroeder.net/2012/07/03/the-launch-at-login-sandbox-project/
+
 Tutorial Author: Peter Kamb
 Website: https://github.com/pkamb/OpenAtLogin
 
@@ -17,4 +20,4 @@ Forked from SGLaunchAtLogin
 Author: Justin Williams
 Contact: justin[at]secondgearsoftware[dot]com
 Website: http://www.secondgearsoftware.com/
-GitHub: https://github.com/carpeaqua/Shared-File-List-Example
+GitHub: https://github.com/justin/Shared-File-List-Example
