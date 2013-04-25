@@ -31,7 +31,12 @@
 - (void)enableLoginItemWithLoginItemsReference:(LSSharedFileListRef )theLoginItemsRefs ForPath:(NSString *)appPath {
 	// We call LSSharedFileListInsertItemURL to insert the item at the bottom of Login Items list.
 	CFURLRef url = (__bridge CFURLRef)[NSURL fileURLWithPath:appPath];
-	LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(theLoginItemsRefs, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);		
+    
+    CFMutableDictionaryRef inPropertiesToSet = CFDictionaryCreateMutable(NULL, 1, NULL, NULL);
+    CFDictionaryAddValue(inPropertiesToSet, kLSSharedFileListLoginItemHidden, kCFBooleanTrue);
+    
+	LSSharedFileListItemRef item = LSSharedFileListInsertItemURL(theLoginItemsRefs, kLSSharedFileListItemLast, NULL, NULL, url, NULL, NULL);
+	CFRelease(inPropertiesToSet);
 	if (item)
 		CFRelease(item);
 }
@@ -106,7 +111,8 @@
 		else
 			[self disableLoginItemWithLoginItemsReference:loginItems ForPath:appPath];
 	}
-	CFRelease(loginItems);
+	if(loginItems)
+        CFRelease(loginItems);
 }
 
 @end
